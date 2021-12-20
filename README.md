@@ -18,7 +18,7 @@
 `$ docker run <image>` = `docker run` + `docker start`  
 `$ docker exec <container_name> <command>` executes a command in a running container.  
 `$ docker exec -it <container_name> <shell>` attaches to the container's shell(bash | sh | zsh).  
-> -i = interactive
+> -i = interactive  
 > -t = terminal
 
 ### docker images/ps
