@@ -22,9 +22,14 @@ CMD ["exacutable commands"]
 `$ docker build ./ -t name:tag` Creates an image with a specific name and a tag.
 
 ## Creating a container with a docker image
-`$ docker create <image_name>`
+`$ docker create <image_name>`  
 
 ## Running an image
-`$ docker run <image_name>`
+`$ docker run <image_name>`  
 `$ docker run -p host_port:container_port <image_name>` Creates a container with port forwarding enabled.
 
+## List up current status
+`$ docker ps` shows running containers.  
+`$ docker ps -a` shows running, stopped containers.  
+`$ docker ps -aq` shows running, stopped containers without column names. this can be used with `$ docker rm $(docker ps -aq)`  
+`$ docker images` shows all images.
