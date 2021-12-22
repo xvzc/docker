@@ -55,12 +55,27 @@
 
 ## Writing a Dockerfile
 
+### dev
 ```docker
 FROM BaseImage
 
-RUN commands
+# WORKDIR, RUN, COPY ...
 
 CMD ["exacutable commands"]
+```
+
+### prod
+```docker
+# builder stage
+FROM BaseImage as builder
+
+# WORKDIR, RUN, COPY ...
+
+CMD ["build command"]
+
+# run stage
+FROM nginx
+COPY --fron==builder /usr/src/app/build /usr/share/nginx/html
 ```
 
 # docker-compose
