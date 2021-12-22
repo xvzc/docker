@@ -1,0 +1,17 @@
+{
+  "name": "nodejs-dockercompose",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo test",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.2",
+    "npm": "^8.3.0",
+    "redis": "^3.0.2"
+  }
+}

@@ -9,6 +9,11 @@
 
 ## Basic commands
 
+### docker images/build
+`$ docker images` shows all images.  
+`$ docker build ./` creates an image from the Dockerfile in current directory
+`$ docker build ./ -t name:tag` creates an image with a specific name and a tag.
+
 ### docker create/start
 `$ docker create <image>` creates a container with the image name specified.  
 `$ docker start <container_id>` starts the container.  
@@ -16,20 +21,32 @@
 
 ### docker run/exec
 `$ docker run <image>` = `docker run` + `docker start`  
+`$ docker run -it <image>`  runs a images as a container and show the output.
+`$ docker run -d <image>`  runs a container in background
+> -d = detach
+`docker build -f Dockerfile.dev -t react:test ./`
+> We use -f option when we need to use arbitarily defined name of Dockerfile
+
+
+`$ docker run -p 5000:8080 -v /home/node/app/node_modules -v $(pwd):/home/node/app node:test` 
+> the command above mounts current directory to the working directory inside the container.
+
+`$ docker run -p host_port:container_port <image>` creates a container with port forwarding enabled.
 `$ docker exec <container_name> <command>` executes a command in a running container.  
 `$ docker exec -it <container_name> <shell>` attaches to the container's shell(bash | sh | zsh).  
+
 > -i = interactive  
 > -t = terminal
-
-### docker images/ps
-`$ docker images` shows all images.  
-`$ docker ps` shows running containers.  
-`$ docker ps -a` shows running, stopped containers.  
-`$ docker ps -aq` shows running, stopped containers without column names. 
 
 ### docker stop/kill
 `$ docker stop <container_id>` stops the container(gracefully).  
 `$ docker kill <container_id>` stops the container(immediately).  
+
+
+### docker ps
+`$ docker ps` shows running containers.  
+`$ docker ps -a` shows running, stopped containers.  
+`$ docker ps -aq` shows running, stopped containers without column names. 
 
 ### docker rm/rmi
 `$ docker rm $(docker ps -aq)` removes all containers.  
@@ -46,13 +63,15 @@ RUN commands
 CMD ["exacutable commands"]
 ```
 
-## Creating a docker image with Dockerfile in current directory
-`$ docker build ./`  
-`$ docker build ./ -t name:tag` Creates an image with a specific name and a tag.
+# docker-compose
 
-## Creating a container with a docker image
-`$ docker create <image_name>`  
+## Basic commands
 
-## Running an image
-`$ docker run <image_name>`  
-`$ docker run -p host_port:container_port <image_name>` Creates a container with port forwarding enabled.
+### docker-compose up
+`$ docker-compose up` runs containers written inside the docker-compose.yml.
+`$ docker-compose up -d ` runs in background
+`$ docker-compose up --build` with new images built
+
+### docker-compose down
+`$ docker-compose down` stops all containers that are written in docker-compose.yml.
+

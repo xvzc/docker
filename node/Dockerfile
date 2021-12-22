@@ -1,10 +1,12 @@
 FROM node:10
 
-COPY package.json ./
-COPY server.js ./
+WORKDIR /home/node/app
 
+# copy package.json, npm install first 
+# so that docker can use cache instead of running npm install everytime.
+COPY package.json ./ 
 RUN npm install
 
+COPY ./ ./
+
 CMD ["npm", "start"]
-
-
