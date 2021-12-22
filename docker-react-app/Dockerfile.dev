@@ -1,0 +1,14 @@
+FROM node:alpine
+
+WORKDIR /usr/src/app
+
+# this solves an issue on linux environment
+RUN mkdir -p node_modules/.cache && chmod -R 777 node_modules/.cache
+
+
+COPY package.json ./
+
+RUN npm install 
+COPY ./ ./
+
+CMD ["npm", "run", "start"]
